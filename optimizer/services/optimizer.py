@@ -21,7 +21,10 @@ class RouteOptimizer:
 
         total_cost = total_gallons * float(cheapest_price)
 
-        cheapest_stations = FuelService.get_cheapest_stations(limit=stops_needed)
+        cheapest_stations = []
+
+        if stops_needed > 0:
+            cheapest_stations = FuelService.get_cheapest_stations(limit=stops_needed)
 
         return {
             "distance_miles": distance,
