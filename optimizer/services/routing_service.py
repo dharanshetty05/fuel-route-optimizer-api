@@ -2,14 +2,25 @@ import os
 import requests
 from dotenv import load_dotenv
 
+# load environment variables from .env file
 load_dotenv()
 
-
 class RoutingService:
+    """
+    This is the service layer responsible for interacting with the OpenRouteService API.
+    It encapsulates all routing-related external API calls.
+    """
+
+    # ORS Directions API endpoint
     BASE_URL = "https://api.openrouteservice.org/v2/directions/driving-car"
 
     @classmethod
     def get_route(cls, start_coords, end_coords):
+        """
+        Fetches route details between two coordinate points.
+        Returns parsed route data including distance, duration and geometry
+        """
+
         api_key = os.getenv("ORS_API_KEY")
 
         headers = {
